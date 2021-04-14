@@ -8,32 +8,35 @@ def scrape(url_filter):
         return "Request not correct"
     response_text = r.json()
     for item in response_text['items']:
-        title = item['volumeInfo']['title']
-        published_date = item['volumeInfo']['publishedDate']
-        book, created = Book.objects.update_or_create(title=title, published_date=published_date)
         try:
-            book.average_ratings = item['volumeInfo']['averageRating']
-        except:
-            book.average_ratings = ''
-        try:
-            book.ratings_count = item['volumeInfo']['ratingsCount']
-        except:
-            book.ratings_count = ''
-        try:
-            book.thumbnail = item['volumeInfo']['imageLinks']['thumbnail']
-        except:
-            book.thumbnail = ''
-        try:
-            authors = item['volumeInfo']['authors']
-        except:
-            authors = ''
+            title = item['volumeInfo']['title']
+            published_date = item['volumeInfo']['publishedDate']
+            book, created = Book.objects.update_or_create(title=title, published_date=published_date)
+            try:
+                book.average_ratings = item['volumeInfo']['averageRating']
+            except:
+                book.average_ratings = ''
+            try:
+                book.ratings_count = item['volumeInfo']['ratingsCount']
+            except:
+                book.ratings_count = ''
+            try:
+                book.thumbnail = item['volumeInfo']['imageLinks']['thumbnail']
+            except:
+                book.thumbnail = ''
+            try:
+                authors = item['volumeInfo']['authors']
+            except:
+                authors = ''
 
-        update_authors(book, authors)
-        try:
-            categories = item['volumeInfo']['categories']
-        except:
-            categories = ''
-        update_categories(book, categories)
+            update_authors(book, authors)
+            try:
+                categories = item['volumeInfo']['categories']
+            except:
+                categories = ''
+            update_categories(book, categories)
 
-        book.save()
+            book.save()
+        except:
+            return "Something went wrong during scraping data"
     return "Values scraped sucesfully"
