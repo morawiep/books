@@ -36,4 +36,4 @@ def scrape(url_filter):
         update_categories(book, categories)
 
         book.save()
-        return "Values scraped sucesfully"
+    return "Values scraped sucesfully"
