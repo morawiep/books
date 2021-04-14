@@ -34,4 +34,11 @@ https://books-stx.herokuapp.com/db/
 ###### PUT, DELETE, GET request
 https://books-stx.herokuapp.com/api/books/<\id>
 
-  
+#### Search by author
+https://books-stx.herokuapp.com/api/books/?author=Peter%20Turchin&author=Devin%20Brown
+
+#### Search by published date
+https://books-stx.herokuapp.com/api/books/?published_date=2012
+
+#### Sort by published date
+https://books-stx.herokuapp.com/api/books/?sort=published_date
