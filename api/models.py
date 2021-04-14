@@ -18,8 +18,8 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author, related_name="authors", blank=True)
     published_date = models.CharField(max_length=32)
     categories = models.ManyToManyField(Category, related_name="category", blank=True)
-    average_ratings = models.FloatField(null=True, blank=True)
-    ratings_count = models.IntegerField(null=True, blank=True)
+    average_ratings = models.CharField(max_length=8, null=True, blank=True)
+    ratings_count = models.CharField(max_length=16, null=True, blank=True)
     thumbnail = models.CharField(max_length=256, default='')
 
     def __str__(self):
